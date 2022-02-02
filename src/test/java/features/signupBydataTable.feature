@@ -5,8 +5,8 @@ Feature: Sign up new account from DataTable
     When User clicked on Create new account button
     Then Users should be navigate to Sign Up page
     Then Users fill out the information as below
-      | FirstName | LastName | Email         | Password | ConfirmPassword | Month | Day | Year |
-      | Md.       | Nayeem   | abc@gmail.com | xyz123   | xyz123          | Feb   | 21  | 2010 |
+      | FirstName | LastName | Email           | Password | ConfirmPassword | Month | Day | Year | Gender |
+      | John      | Nayeem   | abx01@gmail.com | xyz123   | xyz123          | Feb   | 21  | 2010 | Male   |
     And user select male as gender
     And user click on checkbox for agreement
     When user click on create new account button

@@ -1,12 +1,18 @@
 package pageObject;
 
 import base.BrowserSetup;
+import io.cucumber.datatable.DataTable;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import stepDef.SignUpSteps;
+
+import java.util.List;
 
 public class SignUpPage extends BrowserSetup {
 
@@ -51,6 +57,10 @@ public class SignUpPage extends BrowserSetup {
 
     @FindBy(how = How.XPATH, using = "//button[@type='submit']")
     public WebElement createMyAccountBtn;
+
+    @FindBy(how= How.XPATH, using = "//div[@class='alert alert-success']")
+    public WebElement thankYouMessage;
+
 
     // Functions
     public void clickCreateAcctBtn(){
@@ -101,4 +111,42 @@ public class SignUpPage extends BrowserSetup {
     public void createMyAccountBtnClick(){
         createMyAccountBtn.click();
     }
-}
+    public void getThankYouMessage(){
+        // String actualMessage = thankYouMessage.getText();  // Thank you for sign up, here your id - verifying with id-TTC8kKTg
+        String actualMessage = thankYouMessage.getText().substring(0,21);
+        System.out.println(actualMessage);
+        String expectedMessage = "Thank you for sign up";
+     //   Assert.assertEquals(actualMessage, expectedMessage );
+
+        if(actualMessage.equalsIgnoreCase("Thank you for sign up")){
+            System.out.println("No Error! New registration successful");
+        }
+        else{
+            System.err.println("Validation Error!");
+        }
+        System.err.println("*********EndTest****************");
+    }
+
+
+    //***********Dynamic Select*******************************************
+//    @FindBy(how= How.NAME, using = "gender")
+//    public WebElement radioGender;
+    //****************************
+
+    //***************** HW: Gender Radio btn******************************
+    // Find out the list of radio button and select the 2nd radio button (Female)
+    //To find the all radio button > //input[@type = 'radio']
+//    public void genderChoice(DataTable tableData){
+//        List<WebElement> gender = radioGender.findElements(By.xpath("//input[@type = 'radio']"));
+//        System.out.println("Size of gender: "+gender.size());
+//        for(int i=0; i<gender.size(); i++){
+//            WebElement genderChoice = gender.get(i);
+//            String genderValue = genderChoice.getAttribute("value");
+//            if (genderValue.equalsIgnoreCase("Female")){ // Female
+//                genderChoice.click();
+//                System.out.println(genderChoice.isSelected());  // boolean value return print true or false
+//            }
+//        }
+    }
+    // *******************************************************************
+//}

@@ -36,12 +36,14 @@ public class SignUpSteps extends BrowserSetup {
         signUpPage.enterMonth(dataTable.cell(1,5));         // Birth-Month
         signUpPage.enterBirthDay(dataTable.cell(1,6));      // Birth-Day
         signUpPage.enterBirthYear(dataTable.cell(1,7));     // Birth-Year
+        String genderFromTable= dataTable.cell(1,8);        // Gender
+        System.out.println(genderFromTable);
+
+
     }
 
     @And("user select male as gender")
-    public void userSelectMaleAsGender() {
-        signUpPage.genderClick();
-    }
+    public void userSelectMaleAsGender() {signUpPage.genderClick();}
 
     @And("user click on checkbox for agreement")
     public void userClickOnCheckboxForAgreement() {
@@ -50,12 +52,12 @@ public class SignUpSteps extends BrowserSetup {
 
     @When("user click on create new account button")
     public void userClickOnCreateNewAccountButton() {
-       // signUpPage.createMyAccountBtnClick();
-        System.out.println("User already fill out the form and waiting to click the button");
+        signUpPage.createMyAccountBtnClick();
+       // System.out.println("User already fill out the form and waiting to click the button");
     }
 
     @Then("User should able to Create new Account successfully")
     public void userShouldAbleToCreateNewAccountSuccessfully() {
-        System.out.println("*************************");
+       signUpPage.getThankYouMessage();
     }
 }
